@@ -10,6 +10,8 @@ import Login from "./pages/LoginPage";
 import Register from "./pages/RegisterPage";
 import ProtectedPage from "./pages/ProtectedPage";
 import ProfilePage from "./pages/ProfilePage";
+import CreditCardForm from "./pages/CreditCardPage/CreditCardForm";
+import UpdateBioForm from "./pages/UpdateBioPage/UpdateBioForm";
 
 function App() {
     return (
@@ -20,6 +22,8 @@ function App() {
                     <Switch>
                         <PrivateRoute component={ProtectedPage} path="/protected" exact/>
                         <PrivateRoute component={ProfilePage} path="/profile" exact/>
+                        <PrivateRoute component={CreditCardForm} path="/credit-card" exact/>
+                        <PrivateRoute component={UpdateBioForm} path="/update-bio" exact/>
                         <Route component={Login} path="/login"/>
                         <Route component={Register} path="/register"/>
                         <Route component={Home} path="/"/>
