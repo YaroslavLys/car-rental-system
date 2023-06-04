@@ -1,6 +1,6 @@
 import {useContext} from "react";
-import UserWelcome from "../components/UserWelcome";
-import AuthContext from "../context/AuthContext";
+import UserWelcome from "../../components/UserWelcome";
+import AuthContext from "../../context/AuthContext";
 
 const Home = () => {
     const {user} = useContext(AuthContext);
