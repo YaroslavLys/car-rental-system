@@ -3,10 +3,11 @@ import {useEffect, useState} from "react";
 import AvatarUploader from "../../components/AvatarUploader";
 import {baseUserProfileURL} from "../../utils/baseURLs";
 import noAvatarImage from "../../assets/no_avatar_image.jpg";
-
+import {useHistory} from "react-router-dom";
 
 function Profile() {
     const api = useAxios();
+    const history = useHistory()
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -65,8 +66,10 @@ function Profile() {
             <p>Last name: {lastName}</p>
             <p>Email: {email}</p>
             <p>Phone: {phone}</p>
-            <p>Balance: {balance}</p>
+            <p>Balance: {balance}$</p>
+            <button onClick={() => history.push('/credit-card')}>+Balance</button>
             <p>Bio: {bio}</p>
+            <button onClick={() => history.push('/update-bio')}>Update bio</button>
             <p>Joined at: {createdAt}</p>
         </div>
     );

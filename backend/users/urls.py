@@ -12,4 +12,6 @@ urlpatterns = [
     path('test/', views.TestEndpoint.as_view(), name='test'),
     path('profile/', views.UserProfileAPIView.as_view(), name='user_profile'),
     path('profile/avatar/', views.UserAvatarAPIView.as_view(), name='user_avatar'),
+    path('balance/', views.BalanceEndpoint.as_view(), name='update_balance'),
+    path('bio/', views.ProfileBioAPIView.as_view(), name='profile_bio')
 ]
