@@ -1,10 +1,9 @@
-import useAxios from "../utils/useAxios";
+import useAxios from "../../utils/useAxios";
 import {useEffect, useState} from "react";
-import AvatarUploader from "../components/AvatarUploader";
-import {baseUserProfileURL} from "../utils/baseURLs";
-import noAvatarImage from "../assets/no_avatar_image.jpg";
+import AvatarUploader from "../../components/AvatarUploader";
+import {baseUserProfileURL} from "../../utils/baseURLs";
+import noAvatarImage from "../../assets/no_avatar_image.jpg";
 import {useHistory} from "react-router-dom";
-
 
 function Profile() {
     const api = useAxios();

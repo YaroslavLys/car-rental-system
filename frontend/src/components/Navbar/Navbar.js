@@ -1,30 +1,39 @@
 import {useContext} from "react";
 import {Link} from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
+import {Nav, NavWrapper, NavInner, NavBar, Title, NavLogged, NavCommon, NavElement} from "./Navbar.styles"
 
 const Navbar = () => {
     const {user, logoutUser} = useContext(AuthContext);
     return (
-        <nav>
-            <div>
-                <h1>Car rental system</h1>
-                <div>
-                    {user ? (
-                        <>
-                            <Link to="/">Home</Link>
-                            <Link to="/protected">Protected Page</Link>
-                            <Link to="/profile">Profile</Link>
-                            <button onClick={logoutUser}>Logout</button>
-                        </>
-                    ) : (
-                        <>
-                            <Link to="/login">Login</Link>
-                            <Link to="/register">Register</Link>
-                        </>
-                    )}
-                </div>
-            </div>
-        </nav>
+        <NavWrapper>
+            <Nav>
+                <NavInner>
+                    <a href="/"><Title>Car rental system</Title></a>
+                    <NavBar>
+                        {user ? (
+                            <NavLogged>
+                                <NavElement><Link to="/">Home</Link></NavElement>
+                                <NavElement><Link to="/protected">Protected Page</Link></NavElement>
+                                <NavElement><Link to="/profile">Profile</Link></NavElement>
+                                <NavElement>
+                                    <button onClick={logoutUser}>Logout</button>
+                                </NavElement>
+                            </NavLogged>
+                        ) : (
+                            <NavCommon>
+                                <NavElement><Link to="/login">
+                                    <button>Login</button>
+                                </Link></NavElement>
+                                <NavElement><Link to="/register">
+                                    <button>Register</button>
+                                </Link></NavElement>
+                            </NavCommon>
+                        )}
+                    </NavBar>
+                </NavInner>
+            </Nav>
+        </NavWrapper>
     );
 };
 
