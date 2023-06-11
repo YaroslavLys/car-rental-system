@@ -14,7 +14,7 @@ const Navbar = () => {
                         {user ? (
                             <NavLogged>
                                 <NavElement><Link to="/">Home</Link></NavElement>
-                                <NavElement><Link to="/protected">Protected Page</Link></NavElement>
+                                <NavElement><Link to="/transport">Transport Page</Link></NavElement>
                                 <NavElement><Link to="/profile">Profile</Link></NavElement>
                                 <NavElement>
                                     <button onClick={logoutUser}>Logout</button>
