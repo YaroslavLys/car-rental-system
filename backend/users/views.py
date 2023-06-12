@@ -1,5 +1,5 @@
 from rest_framework import status
-from rest_framework.generics import RetrieveUpdateAPIView
+from rest_framework.generics import RetrieveUpdateAPIView, CreateAPIView
 
 from users.serializer import ProfileSerializer, ProfileAvatarSerializer, ProfileBioSerializer
 from rest_framework.response import Response
@@ -7,7 +7,6 @@ from rest_framework.views import APIView
 
 from users.serializer import MyTokenObtainPairSerializer, RegisterSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework import generics
 from users.models import CustomUser, Profile
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
@@ -19,7 +18,7 @@ class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
 
-class RegisterView(generics.CreateAPIView):
+class RegisterView(CreateAPIView):
     queryset = CustomUser.objects.all()
     permission_classes = (AllowAny,)
     serializer_class = RegisterSerializer

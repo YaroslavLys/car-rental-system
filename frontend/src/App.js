@@ -13,8 +13,9 @@ import UpdateBioForm from "./pages/UpdateBioPage/UpdateBioForm";
 import Home from "./pages/Home/HomePage";
 import Login from "./pages/Login/LoginPage";
 import Register from "./pages/Register/RegisterPage";
-import ProtectedPage from "./pages/Protected/ProtectedPage";
 import ProfilePage from "./pages/Profile/ProfilePage";
+import TransportPage from "./pages/Transport/TransportPage";
+import TransportDetailsPage from "./pages/TransportDetails/TransportDetailsPage";
 
 function App() {
     return (
@@ -24,10 +25,11 @@ function App() {
                     <Navbar/>
                     <Wrapper>
                         <Switch>
-                            <PrivateRoute component={ProtectedPage} path="/protected" exact/>
+                            <PrivateRoute component={TransportPage} path="/transport" exact/>
                             <PrivateRoute component={ProfilePage} path="/profile" exact/>
                             <PrivateRoute component={CreditCardForm} path="/credit-card" exact/>
                             <PrivateRoute component={UpdateBioForm} path="/update-bio" exact/>
+                            <PrivateRoute component={TransportDetailsPage} path="/transport/:id" exact />
                             <Route component={Login} path="/login"/>
                             <Route component={Register} path="/register"/>
                             <Route component={Home} path="/"/>

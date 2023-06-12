@@ -15,7 +15,7 @@ const Navbar = () => {
                                 <Title><a href="/">Car rental system</a></Title>
                                 <NavLinkElement>
                                     <NavElement><NavLink to="/" activeClassName="selected" exact={true} id="home">Home</NavLink></NavElement>
-                                    <NavElement><NavLink to="/protected" activeClassName="selected" id="protected">Protected Page</NavLink></NavElement>
+                                    <NavElement><NavLink to="/transport" activeClassName="selected" id="protected">Transport Page</NavLink></NavElement>
                                 </NavLinkElement>
                                 <NavUserElement>
                                     <NavElement><NavLink to="/profile" className="fa-solid fa-user"></NavLink></NavElement>
