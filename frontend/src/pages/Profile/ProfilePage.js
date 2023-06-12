@@ -1,9 +1,10 @@
 import useAxios from "../../utils/useAxios";
 import {useEffect, useState} from "react";
-import AvatarUploader from "../../components/AvatarUploader";
+import AvatarUploader from "../../components/Avatar/AvatarUploader";
 import {baseUserProfileURL} from "../../utils/baseURLs";
 import noAvatarImage from "../../assets/no_avatar_image.jpg";
 import {useHistory} from "react-router-dom";
+import {ProfileInner, UserInfo, Avatar, BalanceInfo, OrdersInfo, PersonalDetails, Details, DetailsName, DetailsBio} from "./ProfilePage.styles"
 
 function Profile() {
     const api = useAxios();
@@ -55,23 +56,37 @@ function Profile() {
 
 
     return (
-        <div>
-            <h1>User Profile</h1>
-            <h2>Avatar</h2>
-            <img src={avatar ? (avatar) : (noAvatarImage)}
-                 style={{width: "300px", height: "300px", borderRadius: "150px"}} alt="No avatar"/>
-            <AvatarUploader/>
-            <h2>About user:</h2>
-            <p>First name: {firstName}</p>
-            <p>Last name: {lastName}</p>
-            <p>Email: {email}</p>
-            <p>Phone: {phone}</p>
-            <p>Balance: {balance}$</p>
-            <button onClick={() => history.push('/credit-card')}>+Balance</button>
-            <p>Bio: {bio}</p>
-            <button onClick={() => history.push('/update-bio')}>Update bio</button>
+        <ProfileInner>
+            <UserInfo>
+                <Avatar>
+                    <img src={avatar ? (avatar) : (noAvatarImage)} alt="No avatar"/>
+                    <AvatarUploader/>
+                </Avatar>
+                <PersonalDetails>
+                    <Details>
+                        <DetailsName>
+                        <p>First name: <p className="p-wrapper">{firstName}</p></p>
+                        <p>Last name: <p className="p-wrapper">{lastName}</p></p>
+                        </DetailsName>
+                        <p>Email: <p className="p-wrapper">{email}</p></p>
+                        <p>Phone: <p className="p-wrapper">{phone}</p></p>
+                        <DetailsBio>
+                        <p>Bio: <p className="p-wrapper">{bio}</p></p>
+                        <button onClick={() => history.push('/update-bio')}>Update bio</button>
+                        </DetailsBio>
+                    </Details>
+                    <BalanceInfo>
+                        <p>Balance: {balance}$</p>
+                        <button onClick={() => history.push('/credit-card')}>Top Up balance</button>
+                    </BalanceInfo>
+                </PersonalDetails>
+            </UserInfo>
+            <OrdersInfo>
+                <p>Orders</p>
+            </OrdersInfo>
+
             <p>Joined at: {createdAt}</p>
-        </div>
+        </ProfileInner>
     );
 }
 

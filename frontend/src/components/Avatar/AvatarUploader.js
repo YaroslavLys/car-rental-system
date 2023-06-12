@@ -1,6 +1,7 @@
 import {useState} from "react";
-import useAxios from "../utils/useAxios";
-import {baseUserProfileURL} from "../utils/baseURLs";
+import useAxios from "../../utils/useAxios";
+import {baseUserProfileURL} from "../../utils/baseURLs";
+import {Upload} from "./AvatarUploader.styles";
 
 
 const AvatarUploader = () => {
@@ -17,6 +18,7 @@ const AvatarUploader = () => {
         api.put(`${baseUserProfileURL}/avatar/`, formData)
             .then((response) => {
                 console.log('Avatar uploaded successfully');
+                window.location.reload();
             })
             .catch((error) => {
                 console.error('Error uploading avatar', error);
@@ -24,10 +26,10 @@ const AvatarUploader = () => {
     };
 
     return (
-        <div>
-            <input type="file" onChange={handleFileSelect}/>
+        <Upload>
+            <input type="file" accept="image/png, image/jpeg" onChange={handleFileSelect}/>
             <button onClick={handleUpload}>Upload Avatar</button>
-        </div>
+        </Upload>
     );
 };
 
