@@ -33,6 +33,7 @@ function App() {
                             <Route component={Login} path="/login"/>
                             <Route component={Register} path="/register"/>
                             <Route component={Home} path="/"/>
+                            {/*document.location.reload(true);*/}
                         </Switch>
                     </Wrapper>
                 </AuthProvider>

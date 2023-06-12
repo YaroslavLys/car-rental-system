@@ -18,7 +18,7 @@ export const FooterInner = styled.div`
 export const ContentBlock = styled.div`
   display: flex;
   flex-direction: column;
-  min-width: 300px;
+  min-width: 260px;
   max-width: 400px;
 `
 export const Title = styled.h1`
@@ -43,7 +43,7 @@ export const Description = styled.p`
 
   a {
     cursor: pointer;
-    margin-left: 5px;
+    margin-left: 6px;
     color: #f9f9f9;
     transition: .3s;
   }
@@ -54,13 +54,10 @@ export const Description = styled.p`
   }
 `
 export const SocialIcons = styled.ul`
-  padding-left: 0;
-  margin-bottom: 0;
   list-style: none;
 
   li {
     display: inline-block;
-    margin-bottom: 4px
   }
 
   a {
@@ -82,7 +79,7 @@ export const SocialIcons = styled.ul`
   }
   
   a.facebook, a.twitter, a.instagram {
-    margin-right: 16px;
+    margin-right: 14px;
   }
 
   a.facebook:hover {
