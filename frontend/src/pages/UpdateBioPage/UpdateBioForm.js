@@ -3,7 +3,7 @@ import {useFormik} from "formik";
 import {useHistory} from "react-router-dom";
 import useAxios from "../../utils/useAxios";
 import {baseUserURL} from "../../utils/baseURLs";
-import {ErrorText, FormContainer, FormGroup, Label, TextArea} from "../CreditCardPage/CreditCardForm.styles";
+import {ErrorText, FormContainer, FormGroup, Label, TextArea, Form, Button} from "./UpdateBioForm.styles";
 
 
 const validationSchema = Yup.object({
@@ -25,6 +25,7 @@ const UpdateBioForm = () => {
             api.put(`${baseUserURL}/bio/`, formData)
                 .then((response) => {
                     console.log('Success!');
+                    window.location.reload()
                 })
                 .catch((error) => {
                     console.error('Error', error);
@@ -36,12 +37,13 @@ const UpdateBioForm = () => {
 
     return (
         <FormContainer>
-            <form onSubmit={formik.handleSubmit}>
-                <FormGroup>
+            <Form onSubmit={formik.handleSubmit}>
                     <Label>Bio</Label>
                     <TextArea
                         id="bio"
                         name="bio"
+                        maxlength="10"
+                        placeholder="Tell briefly about yourself" autofocus
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.bio}
@@ -49,9 +51,8 @@ const UpdateBioForm = () => {
                     {formik.touched.bio && formik.errors.bio && (
                         <ErrorText>{formik.errors.bio}</ErrorText>
                     )}
-                </FormGroup>
-                <button type="submit">Submit</button>
-            </form>
+                <Button type="submit">Submit</Button>
+            </Form>
         </FormContainer>
     );
 };

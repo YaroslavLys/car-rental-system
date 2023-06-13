@@ -2,7 +2,8 @@ import * as Yup from "yup";
 import {useFormik} from "formik";
 import AuthContext from "../../context/AuthContext";
 import {useContext} from "react";
-import {ErrorText, FormGroup, Input, Label, TextArea} from "../../pages/CreditCardPage/CreditCardForm.styles";
+import {ErrorText, FormGroup, Input, Label} from "../../pages/CreditCardPage/CreditCardForm.styles";
+import {TextArea} from "../../pages/UpdateBioPage/UpdateBioForm.styles";
 import useAxios from "../../utils/useAxios";
 import {baseTransportURL} from "../../utils/baseURLs";
 

@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   margin: auto;
 
   max-width: 1440px;
-  min-height: 800px;
+  min-height: 900px;
   padding: 140px 15px 40px;
   
   // background-image: url(${CarImage});

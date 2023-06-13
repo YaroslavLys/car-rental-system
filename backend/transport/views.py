@@ -11,7 +11,7 @@ from rest_framework.generics import CreateAPIView
 # Create your views here.
 
 class TransportPagination(pagination.PageNumberPagination):
-    page_size = 2
+    page_size = 4
 
 
 class TransportListModeViewSet(ModelViewSet):

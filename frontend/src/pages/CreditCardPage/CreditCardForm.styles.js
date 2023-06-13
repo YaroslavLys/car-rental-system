@@ -1,5 +1,33 @@
 import styled from "styled-components";
 
+export const FormWrapper = styled.div`
+  position: relative;
+  width: 100%;
+`
+export const GoBack = styled.i`
+  position: absolute;
+  z-index: 0;
+  font-size: 20px;
+  font-style: normal;
+  top: -26%;
+  color: #a1a0a0;
+  left: 1%;
+  
+  transition: .3s;
+
+  &:hover {
+    cursor: pointer;
+    color: #333;
+    transition: .3s;
+  }
+`
+export const Back = styled.i`
+    font-size: 30px;
+    &:hover {
+      cursor: pointer;
+    }
+`
+
 export const FormContainer = styled.div`
   width: 50%;
   margin: auto;
@@ -99,13 +127,6 @@ export const ErrorText = styled.p`
   align-items: center;
   justify-content: center;
   font-size: 14px;
-`
-export const TextArea = styled.textarea`
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  top: 0;
 `
 export const FormSecurityDetailsWrapper = styled.div`
   display: flex;
