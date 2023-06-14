@@ -94,7 +94,6 @@ const CreditCardForm = () => {
                             {/*    /!*<p>XXXX</p>*!/*/}
                             {/*    /!*<p>XXXX</p>*!/*/}
                             {/*</div>*/}
-
                         </div>
 
                         <div className="card-bottom">

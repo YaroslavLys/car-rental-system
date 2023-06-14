@@ -1,12 +1,11 @@
 import styled from "styled-components";
-
 export const Section = styled.section`
   width: 1100px;
   height: 700px;
   margin: auto;
   display: flex;
   background-color: #f3f3f3;
-  box-shadow: 10px 10px 10px #c8cad7,-10px -10px 10px #fff9f9;
+  box-shadow: 10px 10px 10px #dadada,-10px -10px 10px #f9f9f9;
   border-radius: 12px;
 `
 export const RightPart = styled.div`
@@ -14,14 +13,13 @@ export const RightPart = styled.div`
   padding: 25px;
   background-color: #f8f7f7;
   border-radius: 12px;
-  box-shadow: inset 0px 0px 10px #c8cad7;
+  box-shadow: inset 0px 0px 10px #d3d3d5;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-
 `
 export const LeftPart = styled.div`
   width: 40%;
@@ -66,8 +64,8 @@ export const Form = styled.form`
     transition: .25s ease;
     border-radius: 8px;
 
-    box-shadow: inset 2px 2px 4px #d1d9e6,
-      inset -2px -2px 4px #f9f9f9;
+    box-shadow: inset 2px 2px 4px #d2d5da,
+      inset -2px -2px 4px #ececec;
 
     label {
       font-size: 20px;
@@ -92,7 +90,7 @@ export const Button = styled.button`
   letter-spacing: 1.15px;
   cursor: pointer;
 
-  box-shadow: inset 1px 1px 2px #a0a5a8,
+  box-shadow: inset 1px 1px 2px #bfc2c4,
     inset -1px -1px 2px #a0a5a8;
 
   transition: .45s;
