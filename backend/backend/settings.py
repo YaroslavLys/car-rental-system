@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'corsheaders',
 
     'users',
-    'transport'
+    'transport',
+    'order'
 ]
 
 MIDDLEWARE = [
