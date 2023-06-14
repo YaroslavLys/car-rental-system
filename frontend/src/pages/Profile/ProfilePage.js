@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import AvatarUploader from "../../components/Avatar/AvatarUploader";
 import {baseUserProfileURL} from "../../utils/baseURLs";
 import noAvatarImage from "../../assets/no_avatar_image.jpg";
-import {useHistory} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import {ProfileInner, UserInfo, Avatar, BalanceInfo, OrdersInfo, PersonalDetails, Details, DetailsName, DetailsBio} from "./ProfilePage.styles"
 
 function Profile() {
@@ -17,6 +17,7 @@ function Profile() {
     const [bio, setBio] = useState("");
     const [avatar, setAvatar] = useState(null);
     const [createdAt, setCreatedAt] = useState("");
+    const [orders, setOrders] = useState([]);
 
     const getUserProfile = async () => {
         const response = await api.get(`${baseUserProfileURL}/`);
@@ -40,13 +41,14 @@ function Profile() {
 
     useEffect(() => {
         getUserProfile().then((res) => {
-            setBio(res.bio);
-            setFirstName(res.user.first_name);
-            setLastName(res.user.last_name);
-            setEmail(res.user.email);
-            setPhone(res.user.phone);
-            setBalance(res.user.balance);
-            setCreatedAt(res.user.created_at);
+            setBio(res.profile.bio);
+            setFirstName(res.profile.user.first_name);
+            setLastName(res.profile.user.last_name);
+            setEmail(res.profile.user.email);
+            setPhone(res.profile.user.phone);
+            setBalance(res.profile.user.balance);
+            setCreatedAt(res.profile.user.created_at);
+            setOrders(res.orders);
         });
 
         getUserAvatar().then((res) => {
@@ -83,6 +85,19 @@ function Profile() {
             </UserInfo>
             <OrdersInfo>
                 <p>Orders</p>
+                <ul>
+                    {orders.map((item) => (
+                        <li key={item.id} style={{marginTop: "20px"}}>
+                            <ul>
+                                <li>Transport: {item.transport.brand}, {item.transport.model}</li>
+                                <li>Start date: {item.start_date}</li>
+                                <li>End date: {item.end_date}</li>
+                                <Link to={`/order/${item.id}`}><button>View more</button></Link>
+                            </ul>
+                        </li>
+                    ))}
+                </ul>
+
             </OrdersInfo>
 
             <p>Joined at: {createdAt}</p>

@@ -1,6 +1,7 @@
 from rest_framework import status
 from rest_framework.generics import RetrieveUpdateAPIView, CreateAPIView
 
+from order.serializer import OrderSerializer
 from users.serializer import ProfileSerializer, ProfileAvatarSerializer, ProfileBioSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -64,12 +65,22 @@ class ProfileBioAPIView(RetrieveUpdateAPIView):
 
 
 class UserProfileAPIView(RetrieveUpdateAPIView):
-    queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     permission_classes = (IsAuthenticated,)
 
     def get_object(self):
         return self.request.user.profile
+
+    def retrieve(self, request, *args, **kwargs):
+        profile = self.get_object()
+        orders = profile.order_set.all()
+        profile_serializer = self.get_serializer(profile)
+        order_serializer = OrderSerializer(orders, many=True)
+        data = {
+            "profile": profile_serializer.data,
+            "orders": order_serializer.data
+        }
+        return Response(data)
 
 
 class UserAvatarAPIView(RetrieveUpdateAPIView):

@@ -42,6 +42,7 @@ class Transport(models.Model):
     type = models.IntegerField(choices=TYPE_CHOICES, default=0)
     description = models.CharField(max_length=500)
     base_price = models.FloatField()
+    available = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.brand}, {self.model} {self.production_year}"

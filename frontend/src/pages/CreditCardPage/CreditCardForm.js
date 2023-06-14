@@ -22,7 +22,7 @@ import {useHistory} from "react-router-dom";
 const validationSchema = Yup.object({
     cardNumber: Yup.string()
         .required('Card number is required')
-        .matches(/^\d{16}$/, 'Card number must be exactly 16 digits'),
+        .matches(/^\d{4}( \d{4}){3}$/, 'Card number must be exactly 16 digits'),
     cardHolder: Yup.string()
         .required('Card Holder is required'),
     expirationMonth: Yup.string()
@@ -37,6 +37,12 @@ const validationSchema = Yup.object({
     amount: Yup.number()
         .required('Specify the amount of money!')
 });
+
+const formatCardNumber = (cardNumber) => {
+    const cleanedCardNumber = cardNumber.replace(/\D/g, '');
+    const formattedCardNumber = cleanedCardNumber.replace(/(.{4})/g, '$1 ');
+    return formattedCardNumber.trim();
+};
 
 const CreditCardForm = () => {
     const history = useHistory();
@@ -67,6 +73,8 @@ const CreditCardForm = () => {
         }
     });
 
+
+
     return (
         <FormWrapper>
             <GoBack onClick={() => history.push('/profile')}>
@@ -79,7 +87,7 @@ const CreditCardForm = () => {
                         <div className="provider"><i className="fab fa-cc-visa fa-lg"></i></div>
                         <div className="number">
                             <span>card number</span>
-                            <p>XXXX XXXX XXXX XXXX</p>
+                            <p>{formatCardNumber(formik.values.cardNumber) || "XXXX XXXX XXXX XXXX"}</p>
                             {/*<div>*/}
                             {/*    /!*<p>XXXX</p>*!/*/}
                             {/*    /!*<p>XXXX</p>*!/*/}
@@ -91,11 +99,12 @@ const CreditCardForm = () => {
                         <div className="card-bottom">
                             <div className="holder">
                                 <span>card holder</span>
-                                <p>NAME SURNAME</p>
+                                <p>{formik.values.cardHolder || "NAME SURNAME"}</p>
                             </div>
                             <div className="good-through">
                                 <div className="good-through-label">good<br/>through</div>
-                                <div className="good-through-value">09/24</div>
+                                <div className="good-through-value">{formik.values.expirationMonth || "XX"}/
+                                    {formik.values.expirationYear || "XX"}</div>
                             </div>
                         </div>
                     </Card>
@@ -105,7 +114,8 @@ const CreditCardForm = () => {
                             type="text" id="cardNumber" name="cardNumber"
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
-                            value={formik.values.cardNumber}
+                            value={formatCardNumber(formik.values.cardNumber)}
+                            maxLength={19}
                             placeholder="XXXX XXXX XXXX XXXX"
                         />
                         {formik.touched.cardNumber && formik.errors.cardNumber && (

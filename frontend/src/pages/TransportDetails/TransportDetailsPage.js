@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {baseTransportURL} from "../../utils/baseURLs";
 import useAxios from "../../utils/useAxios";
-import {useHistory, useParams} from "react-router-dom";
+import {Link, useHistory, useParams} from "react-router-dom";
 import CreateReview from "../../components/CreateReview/CreateReview";
 import {CarDetails, CarName, TechnicalInfo} from "./TransportDetailsPage.styles"
 
@@ -81,6 +81,8 @@ function TransportDetailsPage() {
                 </li>
             ))}
         </ul>
+        <Link to={`/transport/${id}/create-order`}><button>Create order</button></Link>
+        <button onClick={() => history.push('/transport')}>Go back</button>
     </CarDetails>
 
 
