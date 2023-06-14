@@ -16,6 +16,8 @@ import Register from "./pages/Register/RegisterPage";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import TransportPage from "./pages/Transport/TransportPage";
 import TransportDetailsPage from "./pages/TransportDetails/TransportDetailsPage";
+import OrderDetailsPage from "./pages/OrderDetails/OrderDetailsPage";
+import CreateOrderPage from "./pages/CreateOrder/CreateOrderPage";
 
 function App() {
     return (
@@ -30,6 +32,8 @@ function App() {
                             <PrivateRoute component={CreditCardForm} path="/credit-card" exact/>
                             <PrivateRoute component={UpdateBioForm} path="/update-bio" exact/>
                             <PrivateRoute component={TransportDetailsPage} path="/transport/:id" exact />
+                            <PrivateRoute component={OrderDetailsPage} path="/order/:id" exact />
+                            <PrivateRoute component={CreateOrderPage} path="/transport/:id/create-order" exact />
                             <Route component={Login} path="/login"/>
                             <Route component={Register} path="/register"/>
                             <Route component={Home} path="/"/>
