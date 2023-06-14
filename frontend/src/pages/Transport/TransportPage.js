@@ -6,11 +6,11 @@ import {
     Image,
     Information,
     Item,
-    ItemContent,
     ItemDetails,
     List,
     ListWrapper,
-    NavButton,
+    NavButtonPrevious,
+    NavButtonNext,
     Navigation,
     Wrapper
 } from "./TransportPage.styles"
@@ -79,20 +79,17 @@ function TransportPage() {
                         <Item key={item.id}>
                             <Link to={`/transport/${item.id}`}>
                                 <ItemDetails>
-                                    <ItemContent>
                                         <Image>
                                             <p>READ MORE</p>
-                                            <li><img src={item.image} style={{width: "300px", height: "150px"}}
+                                            <img src={item.image} style={{width: 320, height:210,aspectRatio: 16/9}}
                                                      alt="No image"/>
-                                            </li>
                                         </Image>
                                         <Information>
                                             <li>Brand: {item.brand}</li>
                                             <li>Model: {item.model}</li>
-                                            <li>Year: {item.production_year}</li>
-                                            <li className="price">Price: {item.base_price}</li>
+                                            <li>Year: {item.production_year.slice(0, 4)}</li>
+                                            <li className="price">Price: {item.base_price} / per day</li>
                                         </Information>
-                                    </ItemContent>
                                 </ItemDetails>
                             </Link>
                         </Item>
@@ -100,9 +97,9 @@ function TransportPage() {
                 </List>
             </ListWrapper>
             <Navigation>
-                <NavButton onClick={handlePrevious} disabled={!previous} className="fa-solid fa-arrow-left"></NavButton>
+                <NavButtonPrevious onClick={handlePrevious} disabled={!previous} className="fa-solid fa-arrow-left"></NavButtonPrevious>
                 <p>Page - {currentPage}</p>
-                <NavButton onClick={handleNext} disabled={!next} className="fa-solid fa-arrow-right"></NavButton>
+                <NavButtonNext onClick={handleNext} disabled={!next} className="fa-solid fa-arrow-right"></NavButtonNext>
             </Navigation>
         </Wrapper>
     );

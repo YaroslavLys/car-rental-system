@@ -2,10 +2,10 @@ import * as Yup from "yup";
 import {useFormik} from "formik";
 import AuthContext from "../../context/AuthContext";
 import {useContext} from "react";
-import {ErrorText, FormGroup, Input, Label} from "../../pages/CreditCardPage/CreditCardForm.styles";
 import {TextArea} from "../../pages/UpdateBioPage/UpdateBioForm.styles";
 import useAxios from "../../utils/useAxios";
 import {baseTransportURL} from "../../utils/baseURLs";
+import {Form, FormGroup ,ReviewWrapper, ErrorText, Input, Label, } from "./CreateReview.styles"
 
 
 const validationSchema = Yup.object({
@@ -37,6 +37,7 @@ function CreateReview(props) {
             api.post(`${baseTransportURL}/create-review/`, formData)
                 .then((response) => {
                     console.log('Success!');
+                    window.location.reload()
                 })
                 .catch((error) => {
                     console.error('Error', error);
@@ -45,42 +46,38 @@ function CreateReview(props) {
     });
 
     return (
-        <div>
-            <div>
-                <form onSubmit={formik.handleSubmit}>
-                    <FormGroup>
-                        <Label>Add new review</Label>
-                        <TextArea
-                            id="text"
-                            name="text"
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            value={formik.values.text}
-                        />
-                        {formik.touched.text && formik.errors.text && (
-                            <ErrorText>{formik.errors.text}</ErrorText>
-                        )}
-                    </FormGroup>
-                    <FormGroup>
-                        <Label>Rate this transport</Label>
-                        <Input
-                            type="number"
-                            id="rate"
-                            name="rate"
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            value={formik.values.rate}
-                        />
-                        {formik.touched.rate && formik.errors.rate && (
-                            <ErrorText>{formik.errors.rate}</ErrorText>
-                        )}
-                    </FormGroup>
-                    <button type="submit">Create</button>
-                </form>
-            </div>
-        </div>
-
+        <ReviewWrapper>
+            <Form onSubmit={formik.handleSubmit}>
+                <FormGroup>
+                    <Label>Add new review</Label>
+                    <TextArea
+                        id="text"
+                        name="text"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.text}
+                    />
+                    {formik.touched.text && formik.errors.text && (
+                        <ErrorText>{formik.errors.text}</ErrorText>
+                    )}
+                </FormGroup>
+                <FormGroup>
+                    <Label>Rate this transport</Label>
+                    <Input
+                        type="number"
+                        id="rate"
+                        name="rate"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.rate}
+                    />
+                    {formik.touched.rate && formik.errors.rate && (
+                        <ErrorText>{formik.errors.rate}</ErrorText>
+                    )}
+                </FormGroup>
+                <button type="submit">Create</button>
+            </Form>
+        </ReviewWrapper>
     );
 }
-
 export default CreateReview;

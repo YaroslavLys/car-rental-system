@@ -49,9 +49,13 @@ export const Details = styled.div`
   z-index: 0;
   flex-direction: column;
 
+  p {
+    color: #797979;
+  }
+
   p .p-wrapper {
+    color: #333;
     font-size: 18px;
-    font-weight: 500;
   }
 `
 export const DetailsName = styled.div`

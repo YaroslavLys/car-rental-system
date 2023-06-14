@@ -3,6 +3,7 @@ import {baseTransportURL} from "../../utils/baseURLs";
 import useAxios from "../../utils/useAxios";
 import {useHistory, useParams} from "react-router-dom";
 import CreateReview from "../../components/CreateReview/CreateReview";
+import {CarDetails, CarName, TechnicalInfo} from "./TransportDetailsPage.styles"
 
 function TransportDetailsPage() {
     const {id} = useParams();
@@ -47,12 +48,11 @@ function TransportDetailsPage() {
         }
     };
 
-    return <div>
-        <h1>Transport Detail Page</h1>
-        Id of this transport: {id}
-        <ul>
-            <li>Image: <img src={image} style={{width: "300px", height: "150px"}} alt="No image"/>
-            </li>
+    return <CarDetails>
+        <CarName>{brand} {model}</CarName>
+        <img src={image} style={{width: "500px", height: "300px"}} alt="No image"/>
+        <TechnicalInfo>
+            <p>Technical characteristics:</p>
             <li>Brand: {brand}</li>
             <li>Model: {model}</li>
             <li>Is electro: {electro ? <div>Yes</div> : <div>No</div>}</li>
@@ -63,7 +63,7 @@ function TransportDetailsPage() {
             <li>Type: {type}</li>
             <li>Description: {description}</li>
             <li>Base price: {basePrice}</li>
-        </ul>
+        </TechnicalInfo>
         <hr/>
         <h2>Reviews</h2>
         <hr/>
@@ -81,8 +81,7 @@ function TransportDetailsPage() {
                 </li>
             ))}
         </ul>
-        <button onClick={() => history.push('/transport')}>Go back</button>
-    </div>
+    </CarDetails>
 
 
 }
