@@ -100,7 +100,7 @@ function Profile() {
 
             </OrdersInfo>
 
-            <p>Joined at: {createdAt}</p>
+            <p>Joined at: {createdAt.slice(0, 10)}</p>
         </ProfileInner>
     );
 }
