@@ -3,7 +3,7 @@ import {baseTransportURL} from "../../utils/baseURLs";
 import useAxios from "../../utils/useAxios";
 import {Link, useHistory, useParams} from "react-router-dom";
 import CreateReview from "../../components/CreateReview/CreateReview";
-import {CarDetails, CarName, TechnicalInfo} from "./TransportDetailsPage.styles"
+import {CarDetails, CarName, TechnicalInfo, Button, Review, CreateOrderButton} from "./TransportDetailsPage.styles"
 
 function TransportDetailsPage() {
     const {id} = useParams();
@@ -50,39 +50,44 @@ function TransportDetailsPage() {
 
     return <CarDetails>
         <CarName>{brand} {model}</CarName>
-        <img src={image} style={{width: "500px", height: "300px"}} alt="No image"/>
-        <TechnicalInfo>
-            <p>Technical characteristics:</p>
-            <li>Brand: {brand}</li>
-            <li>Model: {model}</li>
-            <li>Is electro: {electro ? <div>Yes</div> : <div>No</div>}</li>
-            <li>Year: {year}</li>
-            <li>Mileage: {mileage}</li>
-            <li>Range: {range}</li>
-            <li>Color: {color}</li>
-            <li>Type: {type}</li>
-            <li>Description: {description}</li>
-            <li>Base price: {basePrice}</li>
-        </TechnicalInfo>
+        <div style={{display:"flex"}}>
+            <img src={image} style={{width: "500px", height: "auto"}} alt="No image"/>
+            <TechnicalInfo>
+                <p>Technical characteristics:</p>
+                <li>Brand: {brand}</li>
+                <li>Model: {model}</li>
+                <li>Is electro: {electro ? <div>Yes</div> : <div>No</div>}</li>
+                <li>Year: {year}</li>
+                <li>Mileage: {mileage}</li>
+                <li>Range: {range}</li>
+                <li>Color: {color}</li>
+                <li>Type: {type}</li>
+                <li>Description: {description}</li>
+                <li>Base price: {basePrice}</li>
+            </TechnicalInfo>
+        </div>
         <hr/>
         <h2>Reviews</h2>
         <hr/>
         <CreateReview vehicleId={id}/>
         <hr/>
-        <ul>
+        <div style={{display: "table-cell"}}>
             {reviews.map((item) => (
-                <li key={item.id} style={{marginTop: "20px"}}>
-                    <ul>
-                        <li>Date of review: {item.created_at}</li>
-                        <li>User: {item.user.email}</li>
-                        <li>Text of review: {item.text}</li>
-                        <li>Rate: {item.rate}/10</li>
-                    </ul>
-                </li>
+                <Review>
+                    <li key={item.id} style={{marginTop: "20px"}}>
+                        <ul>
+                            <li>Review by  {item.user.email}</li>
+                            <li style={{fontWeight:"100", fontSize:"14px"}}>Created on  {item.created_at}</li>
+                            <li style={{marginTop:"15px", fontWeight:"600", fontSize:"18px"}}>Review: {item.text}</li>
+                            <li style={{marginTop:"15px", fontWeight:"600", fontSize:"18px"}}>Rate: {item.rate}/10</li>
+                        </ul>
+                    </li>
+                </Review>
             ))}
-        </ul>
-        <Link to={`/transport/${id}/create-order`}><button>Create order</button></Link>
-        <button onClick={() => history.push('/transport')}>Go back</button>
+        </div>
+
+        <Link to={`/transport/${id}/create-order`}><CreateOrderButton>Create order</CreateOrderButton></Link>
+        <Button onClick={() => history.push('/transport')}>Go back</Button>
     </CarDetails>
 
 

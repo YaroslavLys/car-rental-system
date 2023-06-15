@@ -1,4 +1,4 @@
-import {useHistory, useParams} from "react-router-dom";
+import {Link, useHistory, useParams} from "react-router-dom";
 import * as Yup from "yup";
 import {useFormik} from "formik";
 import {
@@ -12,6 +12,8 @@ import {LOCATIONS} from "../../utils/locations";
 import useAxios from "../../utils/useAxios";
 import {baseOrderURL, baseTransportURL, baseUserProfileURL} from "../../utils/baseURLs";
 import {useEffect, useState} from "react";
+import {Button, FormCont} from "./CreateOrderPage.styles"
+
 
 
 const validationSchema = Yup.object().shape({
@@ -33,6 +35,7 @@ function CreateOrderPage() {
         try {
             const response = await api.get(`${baseUserProfileURL}/`);
             setProfileId(response.data.profile.id)
+            console.log(response.data);
         } catch (error) {
             console.error(error);
         }
@@ -77,10 +80,81 @@ function CreateOrderPage() {
         Creating order for transport with id: {id}
 
 
-        <FormContainer>
+        {/*<FormContainer>*/}
+        {/*    <form onSubmit={formik.handleSubmit}>*/}
+        {/*        <FormGroup>*/}
+        {/*            <Label>startDate</Label>*/}
+        {/*            <Input*/}
+        {/*                type="date"*/}
+        {/*                id="startDate"*/}
+        {/*                name="startDate"*/}
+        {/*                onChange={formik.handleChange}*/}
+        {/*                onBlur={formik.handleBlur}*/}
+        {/*                value={formik.values.startDate}*/}
+        {/*            />*/}
+        {/*            {formik.touched.startDate && formik.errors.startDate && (*/}
+        {/*                <ErrorText>{formik.errors.startDate}</ErrorText>*/}
+        {/*            )}*/}
+        {/*        </FormGroup>*/}
+        {/*        <FormGroup>*/}
+        {/*            <Label>endDate</Label>*/}
+        {/*            <Input*/}
+        {/*                type="date"*/}
+        {/*                id="endDate"*/}
+        {/*                name="endDate"*/}
+        {/*                onChange={formik.handleChange}*/}
+        {/*                onBlur={formik.handleBlur}*/}
+        {/*                value={formik.values.endDate}*/}
+        {/*            />*/}
+        {/*            {formik.touched.endDate && formik.errors.endDate && (*/}
+        {/*                <ErrorText>{formik.errors.endDate}</ErrorText>*/}
+        {/*            )}*/}
+        {/*        </FormGroup>*/}
+        {/*        <FormGroup>*/}
+        {/*            <Label>startLocation</Label>*/}
+        {/*            <select*/}
+        {/*                type="text" id="startLocation" name="startLocation"*/}
+        {/*                onChange={formik.handleChange}*/}
+        {/*                onBlur={formik.handleBlur}*/}
+        {/*                value={formik.values.startLocation}>*/}
+        {/*                <option value="" disabled selected>Location</option>*/}
+        {/*                <option value="0">Ukraine, Lviv. Stepan Bandera Street, 12.</option>*/}
+        {/*                <option value="1">Ukraine, Rivne. Soborna Street, 12a.</option>*/}
+        {/*                <option value="2">Ukraine, Ternopil. Lystopadova Street, 5.</option>*/}
+        {/*                <option value="3">Ukraine, Ivano-Frankivsk. Mykhailo Hrushevsky Street, 21.</option>*/}
+        {/*            </select>*/}
+
+        {/*            {formik.touched.startLocation && formik.errors.startLocation && (*/}
+        {/*                <ErrorText>{formik.errors.startLocation}</ErrorText>*/}
+        {/*            )}*/}
+        {/*        </FormGroup>*/}
+        {/*        <FormGroup>*/}
+        {/*            <Label>endLocation</Label>*/}
+        {/*            <select*/}
+        {/*                type="text" id="endLocation" name="endLocation"*/}
+        {/*                onChange={formik.handleChange}*/}
+        {/*                onBlur={formik.handleBlur}*/}
+        {/*                value={formik.values.endLocation}>*/}
+        {/*                <option value="" disabled selected>Location</option>*/}
+        {/*                <option value="0">Ukraine, Lviv. Stepan Bandera Street, 12.</option>*/}
+        {/*                <option value="1">Ukraine, Rivne. Soborna Street, 12a.</option>*/}
+        {/*                <option value="2">Ukraine, Ternopil. Lystopadova Street, 5.</option>*/}
+        {/*                <option value="3">Ukraine, Ivano-Frankivsk. Mykhailo Hrushevsky Street, 21.</option>*/}
+        {/*            </select>*/}
+        {/*            {formik.touched.endLocation && formik.errors.endLocation && (*/}
+        {/*                <ErrorText>{formik.errors.endLocation}</ErrorText>*/}
+        {/*            )}*/}
+        {/*        </FormGroup>*/}
+        {/*        <button type="submit">Submit</button>*/}
+        {/*    </form>*/}
+        {/*</FormContainer>*/}
+
+
+
+        <FormCont>
             <form onSubmit={formik.handleSubmit}>
                 <FormGroup>
-                    <Label>startDate</Label>
+                    <Label>Starting day of your rental</Label>
                     <Input
                         type="date"
                         id="startDate"
@@ -94,7 +168,7 @@ function CreateOrderPage() {
                     )}
                 </FormGroup>
                 <FormGroup>
-                    <Label>endDate</Label>
+                    <Label>End of rental</Label>
                     <Input
                         type="date"
                         id="endDate"
@@ -108,7 +182,7 @@ function CreateOrderPage() {
                     )}
                 </FormGroup>
                 <FormGroup>
-                    <Label>startLocation</Label>
+                    <Label>Starting location of your rental</Label>
                     <select
                         type="text" id="startLocation" name="startLocation"
                         onChange={formik.handleChange}
@@ -126,7 +200,7 @@ function CreateOrderPage() {
                     )}
                 </FormGroup>
                 <FormGroup>
-                    <Label>endLocation</Label>
+                    <Label>Finishing location of rental</Label>
                     <select
                         type="text" id="endLocation" name="endLocation"
                         onChange={formik.handleChange}
@@ -142,9 +216,9 @@ function CreateOrderPage() {
                         <ErrorText>{formik.errors.endLocation}</ErrorText>
                     )}
                 </FormGroup>
-                <button type="submit">Submit</button>
+                <Button type="submit">Submit</Button>
             </form>
-        </FormContainer>
+        </FormCont>
     </div>
 }
 
