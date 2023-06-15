@@ -139,7 +139,6 @@ export const OrdersInfo = styled.div`
   border: 1px solid #f3f3f3;
 `
 
-
 //Styling for orders in profile page
 //Start
 
@@ -158,21 +157,19 @@ export const OrdersInfoWrapper = styled.div`
     margin-bottom: 20px;
   }
 `
-
 export const OrderList = styled.ul`
   display: grid; // замінити на grid
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   align-items: center; // Center the cards
 `
-
 export const OrderListItem = styled.li`
   list-style: none; // додаємо цей рядок
   padding: 20px;
-  border: 1px solid #d3d3d3;
+  border: 1px solid #ccc;
   border-radius: 12px;
-  background-color: #f8f7f7;
-  box-shadow: 2px 2px 10px #f9f9f9, -2px -2px 10px #f9f9f9;
+  background-color: #f3f3f3;
+  box-shadow: 2px 2px 10px #f9f9f9, -2px -2px 10px #f9f9f9, inset 1px 1px 10px #ccc, inset -1px -1px 10px #ccc;
   display: flex; // add this line to make content and image sit next to each other
   object-fit: cover;
 
@@ -181,8 +178,6 @@ export const OrderListItem = styled.li`
     padding: 10px;
   }
 `
-
-
 export const OrderImage = styled.div`
   flex: 1; // makes the image take all available space
   img {
@@ -194,8 +189,6 @@ export const OrderImage = styled.div`
     height: 100%;
   }
 `
-
-
 export const OrderButton = styled.button`
   font-size: 16px;
   padding: 10px 20px;
@@ -214,7 +207,6 @@ export const OrderButton = styled.button`
     transition: .4s linear;
   }
 `
-
 export const OrderCard = styled.div`
   //display: flex;
   display: grid;
@@ -222,11 +214,11 @@ export const OrderCard = styled.div`
   justify-content: space-between;
   //align-items: center;
   border: 1px solid #d3d3d3;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 20px;
   margin: 10px 0;
-  background-color: #f9f9f9;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  background-color: rgba(243, 243, 243, 0.8);
+  box-shadow: 2px 2px 6px #ececec, -2px -2px 6px #ececec;
 `
 
 

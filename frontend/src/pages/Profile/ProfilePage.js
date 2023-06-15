@@ -5,10 +5,8 @@ import {baseUserProfileURL} from "../../utils/baseURLs";
 import noAvatarImage from "../../assets/no_avatar_image.jpg";
 import {Link, useHistory} from "react-router-dom";
 import {ProfileInner, UserInfo, Avatar, BalanceInfo, PersonalDetails, Details, DetailsName, DetailsBio} from "./ProfilePage.styles"
-
 import {OrdersInfoWrapper, OrderList, OrderListItem, OrderButton, OrderImage, OrderCard} from "./ProfilePage.styles";
-import placeholder from "../../assets/car-0.jpg";
-
+import placeholder from "../../assets/car-0.jpg"
 
 function Profile() {
     const api = useAxios();
@@ -94,11 +92,9 @@ function Profile() {
                         <OrderCard>
                             <OrderListItem key={item.id}>
                                 <OrderImage>
-                                {/* checks if the image URL is valid, and if not, defaults to a placeholder image */}
-                                <img 
+                                <img
                                     src={placeholder}
-//TODO: change src no database picture of rented car. For me it somehow wasn't working
-                                    style={{aspectRatio: 16/9}} 
+                                    style={{aspectRatio : 16/9}}
                                     alt="Transport vehicle"/>
                                 </OrderImage>
                                 <ul>

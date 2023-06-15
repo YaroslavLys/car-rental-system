@@ -3,7 +3,7 @@ import {baseTransportURL} from "../../utils/baseURLs";
 import useAxios from "../../utils/useAxios";
 import {Link, useHistory, useParams} from "react-router-dom";
 import CreateReview from "../../components/CreateReview/CreateReview";
-import {CarDetails, CarName, TechnicalInfo, Button, Review, CreateOrderButton} from "./TransportDetailsPage.styles"
+import {CarDetails, CarName, TechnicalInfo, Review, CreateOrderButton, CarPreview, ListItemWrapper, Back, GoBack} from "./TransportDetailsPage.styles"
 
 function TransportDetailsPage() {
     const {id} = useParams();
@@ -49,21 +49,30 @@ function TransportDetailsPage() {
     };
 
     return <CarDetails>
+        <GoBack onClick={() => history.push('/transport')}>
+            <Back className="fa fa-arrow-left" aria-hidden="true"></Back>
+            <p>Go Back</p>
+        </GoBack>
         <CarName>{brand} {model}</CarName>
         <div style={{display:"flex"}}>
-            <img src={image} style={{width: "500px", height: "auto"}} alt="No image"/>
+            <CarPreview>
+                <img src={image} style={{width: "500px", height: "auto"}} alt="No image"/>
+                <CreateOrderButton onClick={() => history.push(`/transport/${id}/create-order`)}>Create order</CreateOrderButton>
+            </CarPreview>
             <TechnicalInfo>
                 <p>Technical characteristics:</p>
-                <li>Brand: {brand}</li>
-                <li>Model: {model}</li>
-                <li>Is electro: {electro ? <div>Yes</div> : <div>No</div>}</li>
-                <li>Year: {year}</li>
-                <li>Mileage: {mileage}</li>
-                <li>Range: {range}</li>
-                <li>Color: {color}</li>
-                <li>Type: {type}</li>
-                <li>Description: {description}</li>
-                <li>Base price: {basePrice}</li>
+                <ListItemWrapper>
+                    <li>Brand: {brand}</li>
+                    <li>Model: {model}</li>
+                    <li>Is electro: {electro ? <div>Yes</div> : <div>No</div>}</li>
+                    <li>Year: {year}</li>
+                    <li>Mileage: {mileage}</li>
+                    <li>Range: {range}</li>
+                    <li>Color: {color}</li>
+                    <li>Type: {type}</li>
+                    <li>Description: {description}</li>
+                    <li>Base price: {basePrice}</li>
+                </ListItemWrapper>
             </TechnicalInfo>
         </div>
         <hr/>
@@ -85,12 +94,7 @@ function TransportDetailsPage() {
                 </Review>
             ))}
         </div>
-
-        <Link to={`/transport/${id}/create-order`}><CreateOrderButton>Create order</CreateOrderButton></Link>
-        <Button onClick={() => history.push('/transport')}>Go back</Button>
     </CarDetails>
-
-
 }
 
 export default TransportDetailsPage

@@ -27,7 +27,6 @@ export const Back = styled.i`
       cursor: pointer;
     }
 `
-
 export const FormContainer = styled.div`
   width: 50%;
   margin: auto;
