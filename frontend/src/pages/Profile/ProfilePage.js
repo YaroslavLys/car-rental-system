@@ -4,7 +4,11 @@ import AvatarUploader from "../../components/Avatar/AvatarUploader";
 import {baseUserProfileURL} from "../../utils/baseURLs";
 import noAvatarImage from "../../assets/no_avatar_image.jpg";
 import {Link, useHistory} from "react-router-dom";
-import {ProfileInner, UserInfo, Avatar, BalanceInfo, OrdersInfo, PersonalDetails, Details, DetailsName, DetailsBio} from "./ProfilePage.styles"
+import {ProfileInner, UserInfo, Avatar, BalanceInfo, PersonalDetails, Details, DetailsName, DetailsBio} from "./ProfilePage.styles"
+
+import {OrdersInfoWrapper, OrderList, OrderListItem, OrderButton, OrderImage, OrderCard} from "./ProfilePage.styles";
+import placeholder from "../../assets/car-0.jpg";
+
 
 function Profile() {
     const api = useAxios();
@@ -83,22 +87,31 @@ function Profile() {
                     </BalanceInfo>
                 </PersonalDetails>
             </UserInfo>
-            <OrdersInfo>
+            <OrdersInfoWrapper>
                 <p>Orders</p>
-                <ul>
+                <OrderList>
                     {orders.map((item) => (
-                        <li key={item.id} style={{marginTop: "20px"}}>
-                            <ul>
-                                <li>Transport: {item.transport.brand}, {item.transport.model}</li>
-                                <li>Start date: {item.start_date}</li>
-                                <li>End date: {item.end_date}</li>
-                                <Link to={`/order/${item.id}`}><button>View more</button></Link>
-                            </ul>
-                        </li>
+                        <OrderCard>
+                            <OrderListItem key={item.id}>
+                                <OrderImage>
+                                {/* checks if the image URL is valid, and if not, defaults to a placeholder image */}
+                                <img 
+                                    src={placeholder}
+//TODO: change src no database picture of rented car. For me it somehow wasn't working
+                                    style={{aspectRatio: 16/9}} 
+                                    alt="Transport vehicle"/>
+                                </OrderImage>
+                                <ul>
+                                    <li><strong>Transport: </strong>{item.transport.brand}, {item.transport.model}</li>
+                                    <li><strong>Start date: </strong>{item.start_date}</li>
+                                    <li><strong>End date: </strong>{item.end_date}</li>
+                                    <Link to={`/order/${item.id}`}><OrderButton>View more</OrderButton></Link>
+                                </ul>
+                            </OrderListItem>
+                        </OrderCard>
                     ))}
-                </ul>
-
-            </OrdersInfo>
+                </OrderList>
+            </OrdersInfoWrapper>
 
             <p>Joined at: {createdAt.slice(0, 10)}</p>
         </ProfileInner>
