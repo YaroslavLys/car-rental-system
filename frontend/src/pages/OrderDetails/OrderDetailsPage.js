@@ -4,6 +4,8 @@ import {baseOrderURL} from "../../utils/baseURLs";
 import {useEffect, useState} from "react";
 import {LOCATIONS} from "../../utils/locations";
 
+import {OrderDetailsWrapper, OrderDetailsList, OrderDetailsButton, OrderDetailsRow, OrderDetailsBox, OrderImage} from "./OrderDetailsPage.styles";
+import placeholder from "../../assets/car-0.jpg";
 
 function OrderDetailsPage() {
     const {id} = useParams();
@@ -29,7 +31,7 @@ function OrderDetailsPage() {
             setEndLocation(response.data.end_location);
             setBill(response.data.bill);
             setIsOpen(response.data.is_open);
-            console.log(response.data)
+            console.log(response.data);
         } catch (error) {
             console.error(error);
         }
@@ -45,21 +47,35 @@ function OrderDetailsPage() {
     };
 
 
-    return <div>
+    return <OrderDetailsWrapper>
         <h1>Order Detail Page</h1>
-        Id of this order: {id}
-        <ul>
-            <li>Start date: {startDate}</li>
-            <li>End date: {endDate}</li>
-            <li>Start location: {LOCATIONS[startLocation]}</li>
-            <li>End location: {LOCATIONS[endLocation]}</li>
-            <li>Bill: {bill}</li>
-            <li>Is open: {isOpen ? "True" : "False"}</li>
-        </ul>
-        <hr/>
-        <button onClick={() => history.push('/profile')}>Back to profile</button>
-        <button onClick={() => closeOrder()}>Close this order</button>
-    </div>
+
+        <OrderDetailsBox>
+            <OrderImage>
+            <img 
+                src={placeholder}
+//TODO: change src no database picture of rented car. For me it somehow wasn't working
+                style={{aspectRatio: 16/9}} 
+                alt="Transport vehicle"/>
+            </OrderImage>
+
+            <OrderDetailsList>
+                
+                    <li><strong>Start date: </strong>{startDate}</li>
+                    <li><strong>End date: </strong>{endDate}</li>
+                    <li><strong>Start location: </strong>{LOCATIONS[startLocation]}</li>
+                    <li><strong>End location: </strong>{LOCATIONS[endLocation]}</li>
+                    <li><strong>Bill: </strong>{bill}</li>
+                    <li><strong>Is open: </strong>{isOpen ? "True" : "False"}</li>
+                
+            </OrderDetailsList>
+        </OrderDetailsBox>
+    <hr/>
+    <OrderDetailsRow>
+        <OrderDetailsButton onClick={() => history.push('/profile')}>Back to profile</OrderDetailsButton>
+        <OrderDetailsButton onClick={() => closeOrder()}>Close this order</OrderDetailsButton>
+    </OrderDetailsRow>
+</OrderDetailsWrapper>
 }
 
 export default OrderDetailsPage;
